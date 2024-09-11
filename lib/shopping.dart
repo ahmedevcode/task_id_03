@@ -1,18 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:task_id_03/feature/shopping/controller/shopping_cubit.dart';
+import 'package:task_id_03/feature/shopping/presentation/screens/shopping_home.dart';
 
 class Shopping extends StatelessWidget {
-  const Shopping({super.key});
+  const Shopping({super.key, required this.shoppingBox});
+  final Box<String> shoppingBox;
+
+  // MyApp({required this.shoppingBox});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+        ),
       ),
-      //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: BlocProvider(
+        create: (context) => ShoppingCubit(shoppingBox),
+        child: ShoppingListPage(),
+      ),
     );
   }
 }

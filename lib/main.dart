@@ -6,5 +6,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox<String>('shoppingBox');
-  runApp(const Shopping());
+  var shoppingBox = await Hive.openBox<String>('shoppingBox');
+  runApp(Shopping(shoppingBox: shoppingBox));
 }
