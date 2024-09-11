@@ -1,8 +1,18 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:hive/hive.dart';
 
-part 'shopping_state.dart';
+class ShoppingCubit extends Cubit<List<String>> {
+  final Box<String> _shoppingBox;
 
-class ShoppingCubit extends Cubit<ShoppingState> {
-  ShoppingCubit() : super(ShoppingInitial());
+  ShoppingCubit(this._shoppingBox) : super(_shoppingBox.values.toList());
+
+  void addItem(String item) {
+    _shoppingBox.add(item);
+    emit(_shoppingBox.values.toList());
+  }
+
+  void removeItem(int index) {
+    _shoppingBox.deleteAt(index);
+    emit(_shoppingBox.values.toList());
+  }
 }
