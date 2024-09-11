@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:task_id_03/feature/shopping/presentation/screens/shopping_home.dart';
 
 class WavePainter extends CustomPainter {
   @override
@@ -8,10 +10,10 @@ class WavePainter extends CustomPainter {
       ..style = PaintingStyle.fill;
 
     final path = Path()
-      ..moveTo(0, size.height * 0.80)
+      ..moveTo(0, size.height * 0.80.h)
       ..quadraticBezierTo(
-          size.width * 0.5, size.height, size.width, size.height * 0.75)
-      ..lineTo(size.width, 0)
+          size.width * 0.5.w, size.height.h, size.width.w, size.height * 0.75.h)
+      ..lineTo(size.width.w, 0)
       ..lineTo(0, 0)
       ..close();
 

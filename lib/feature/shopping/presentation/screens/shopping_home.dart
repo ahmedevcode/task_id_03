@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task_id_03/core/style/sytle.dart';
 import 'package:task_id_03/feature/shopping/controller/shopping_cubit.dart';
 import 'package:task_id_03/feature/shopping/presentation/screens/widgets/custom_painter.dart';
@@ -16,18 +17,17 @@ class ShoppingListPage extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(
-            height: 250, // Adjust this as needed
+            height: 250.h,
             child: Stack(
               children: [
                 CustomPaint(
-                  size: const Size(
-                      double.infinity, 250), // Ensure CustomPaint has size
+                  size: const Size(double.infinity, 250),
                   painter: WavePainter(),
                 ),
                 Positioned(
-                  top: 30,
-                  left: 16,
-                  right: 16,
+                  top: 30.h,
+                  left: 16.w,
+                  right: 16.w,
                   child: AppBar(
                     backgroundColor: Colors.transparent,
                     elevation: 0,
@@ -56,17 +56,17 @@ class ShoppingListPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               borderSide: BorderSide.none,
                             ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 20.w, vertical: 15.h),
                           ),
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.black),
                         ),
                       ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 10.w),
                       // Add button with animation
                       AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
-                        decoration: BoxDecoration(
+                        duration: const Duration(milliseconds: 300),
+                        decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: Colors.red,
                         ),
@@ -85,8 +85,7 @@ class ShoppingListPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  // Expanded for the list of items
+                  SizedBox(height: 20.h),
                   Expanded(
                     child: BlocBuilder<ShoppingCubit, List<String>>(
                       builder: (context, shoppingList) {
@@ -119,7 +118,7 @@ class ShoppingListPage extends StatelessWidget {
         onDismissed: (direction) {
           context.read<ShoppingCubit>().removeItem(index);
           _listKey.currentState
-              ?.removeItem(index, (context, animation) => SizedBox());
+              ?.removeItem(index, (context, animation) => const SizedBox());
         },
         background: Container(color: Colors.redAccent),
         child: Card(
@@ -129,8 +128,8 @@ class ShoppingListPage extends StatelessWidget {
           ),
           elevation: 5,
           child: ListTile(
-            title: Text(item, style: TextStyle(fontSize: 18)),
-            trailing: Icon(
+            title: Text(item, style: const TextStyle(fontSize: 18)),
+            trailing: const Icon(
               Icons.shopping_cart,
               color: Colors.red,
             ),
